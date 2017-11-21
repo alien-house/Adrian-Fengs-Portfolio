@@ -1,0 +1,107 @@
+// Glyphicons font path
+$icon-font-path:        "../fonts/";
+$font-family-poppins: "Poppins", Abel, Arial, "Helvetica Neue", Helvetica, sans-serif;
+$font-family-rozha: "Rozha One", Abel, Arial, "Helvetica Neue", Helvetica, sans-serif;
+$font-family-Abel: Abel, Arial, "Helvetica Neue", Helvetica, sans-serif;
+
+// Grid settings
+$main-md-columns:       12;
+$sidebar-md-columns:    4;
+
+// Breakpoint
+$width-max          : 1365px;
+$breakpoint-lg      : 1200px;
+$breakpoint-md      : 970px;
+$breakpoint-tablet  : 768px;
+$breakpoint-mobile  : 640px;
+
+// Alpha
+$alpha              : 0.8;
+$bd-radius          : 4px;
+
+// Colors
+$pure-white : #ffffff;
+$color-yellow : #eac30d;
+$color-fadedbrown : #b5b09b;
+$color-bg-yellow : #f7f5ec;
+
+
+// // Colors
+// $brand-primary:         #b74e5d;
+// $link:                  #b74e5d;
+// $red:                   #df262c;
+// $gray:                  #717171;
+// $border-pink:           #d9676b;
+// $border:                #ececec;
+// $white:                 #f6f6f6;
+// $black:                 #1C2227;
+// $type:                  #4a4a4a;
+// $footer-type:           #bfbfbf;
+// $facebook:              #4460a0;
+// $twitter:               #00aaec;
+// $google:                #f93f2d;
+// $rss:                   #ff9a00;
+// $pocket:                #ee4056;
+// $hatena:                #5279e7;
+
+// Mixin Setting
+@mixin bder-radius($radi: $bd-radius){
+	border-radius:$radi;
+}
+
+// @mixin white-box {
+//   @include border-radius(8px);
+//   background-color: $pure-white;
+//   padding: 2.4em;
+//   overflow: hidden;
+//   margin-bottom: 2em;
+// }
+
+// @mixin white-box-sidebar {
+//   @include border-radius(8px);
+//   background-color: $pure-white;
+//   padding: 1.4em;
+//   overflow: hidden;
+//   margin-top: 2em;
+// }
+
+// @mixin btn {
+//   @include border-radius(8px);
+//   display: inline-block;
+//   background: $red;
+//   border:1px solid $red;
+//   color: $white;
+//   #{&}:hover{
+//     border:1px solid $red;
+//     color: $red;
+//     background: $white;
+//     text-decoration: none;
+//   }
+// }
+
+// @mixin transition($transition...) {
+//     -moz-transition:    $transition;
+//     -o-transition:      $transition;
+//     -webkit-transition: $transition;
+//     transition:         $transition;
+// }
+
+@mixin max-screen($break-point) {
+  @media screen and (max-width: $break-point) {
+    @content;
+  }
+}
+
+@mixin min-screen($break-point) {
+  @media screen and (min-width: $break-point) {
+    @content;
+  }
+}
+
+// @mixin screen($break-point-min, $break-point-max) {
+//   @media screen and (min-width: $break-point-min) and (max-width: $break-point-max) {
+//     @content;
+//   }
+// }
+
+

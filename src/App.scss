@@ -1,0 +1,518 @@
+@import '../node_modules/reset-css/reset.scss';
+@import "./sass/components/variables";
+@import "./sass/components/buttons";
+@import "./sass/About";
+@import "./sass/Works";
+@import url('https://fonts.googleapis.com/css?family=Abel|Poppins:300,400,600|Rozha+One');
+
+body{
+  color:#fff;
+  background: #000;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-smoothing: antialiased;
+  font-family:$font-family-poppins;
+}
+a{
+  color:#fff;
+  text-decoration:none;
+}
+button{
+  outline: none;
+  border: none;
+  background:transparent;
+  padding:0;
+}
+strong{
+  font-weight:bold;
+}
+
+
+/* ===========================
+  Navigation
+=========================== */
+.site-information{
+}
+.home-header{
+  position:fixed;
+  z-index: 2;
+  text-align:center;
+  width:100%;
+  h1{
+    padding: 75px 0 5px; 
+    @include max-screen($breakpoint-tablet) {
+      padding: 25px 0 0; 
+      #Adrian-Feng{
+        width:160px;
+      }
+    }
+  }
+  h2{
+    color:#fff;
+    font-size:1.0rem;
+    font-family: $font-family-Abel;
+    @include max-screen($breakpoint-tablet) {
+      font-size:0.8rem;
+      margin-top:-5px;
+    }
+  }
+}
+.nav{
+    position: fixed;
+    z-index: 3;
+    width: 100%;
+}
+.nav__burger{
+  position: absolute;
+  z-index: 1;
+  width: 48px;
+  height: 50px;
+  cursor: pointer;
+  right: 6.1vw;
+  top: 40px;
+  @include max-screen($breakpoint-tablet) {
+    top: 20px;
+    right: 5vw;
+    width: 26px;
+  }
+  span{
+    background: #fff;
+    display: block;
+    height: 1px;
+    margin: 14px 0;
+    transform-origin: center;
+    transition: all .3s;
+    width: 100%;
+    @include max-screen($breakpoint-tablet) {
+      margin: 10px 0;
+    }
+  }
+  &:hover{
+    span{
+      background: $color-yellow;
+      transform:scaleY(2);
+    }
+  }
+  &.is_open{
+    span{
+      background:$color-fadedbrown;
+    }
+    .line--1{ transform: translateY(15px) rotate(45deg); }
+    .line--2{ transform:scaleX(0); }
+    .line--3{ transform: translateY(-15px) rotate(-45deg);}
+    @include max-screen($breakpoint-tablet) {
+      .line--1{ transform: translateY(11px) rotate(45deg); }
+      .line--3{ transform: translateY(-11px) rotate(-45deg);}
+    }
+    &:hover{
+      span{
+        background: $color-yellow;
+      }
+    }
+  }
+}
+
+.navigation{
+  visibility: hidden;
+  position:fixed;
+  display:table;
+  width:100%;
+  height:100%;
+  background:$color-bg-yellow;
+  text-align:center;
+  color:$color-fadedbrown;
+  .navigation__box{
+    display:table-cell;
+    vertical-align:middle;
+  }
+  .menu{
+    li{
+      font-size:4rem;
+      font-family:$font-family-rozha;
+      margin:0 0 2vh;
+      letter-spacing:5px;
+      @include max-screen($breakpoint-tablet) {
+        font-size:2.5rem;
+      }
+      a{
+        position:relative;
+        display:inline-block;
+        color:$color-fadedbrown;
+        overflow:hidden;
+        transition: all .6s;
+        &:after{
+            content:"";
+            display:block;
+            position:absolute;
+            width:100%;
+            height:100%;
+            top:0;
+            left:-100%;
+            background:$color-yellow;
+        }
+        &:hover{
+            color:$color-yellow;
+            &:after{
+                animation: toRight 0.6s ease 0s 1 normal both;
+            }
+        }
+      }
+    }
+  }
+
+  .home-profile{
+    .home-profile__txt{
+      font-size:0.9rem;
+      line-height: 1.6;
+      letter-spacing:1px;
+      margin:0 0 10px;
+      @include max-screen($breakpoint-tablet) {
+        font-size:0.8rem;
+      }
+    }
+    .home-profile__email{
+      margin:0 0 1em;
+      font-size:0.8rem;
+      a{
+        color:$color-yellow;
+        text-decoration:underline;
+        letter-spacing:2px;
+        &:hover{
+          text-decoration:none;
+        }
+      }
+    }
+    .social{
+      display:flex;
+      justify-content:center;
+      padding:20px;
+      li{
+        padding:0 20px;
+        a{
+          span{
+            transition: all .3s;
+            color:$color-fadedbrown;
+            font-size:1.8rem;
+          }
+          &:hover{
+            span{
+              color:$color-yellow;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.normalpage{
+  position:absolute;
+  z-index:1;
+  display:table;
+  width:100%;
+  height:100%;
+  font-style: normal;
+  font-weight: 400;
+  font-family: $font-family-rozha;
+  overflow:hidden;
+}
+
+/* ===========================
+  Home
+=========================== */
+#home-project{
+  position:absolute;
+  z-index:1;
+}
+.home-project{
+  display:table;
+  width:100%;
+  height:100%;
+  font-style: normal;
+  font-weight: 400;
+  font-family: $font-family-rozha;
+  overflow:hidden;
+  .home-project-inner{
+    position:relative;
+    display: table-cell;
+    padding:10vh 0 0;
+    width:100%;
+    vertical-align: middle;
+  }
+  .home-project-box{
+    position:relative;
+    left:22.5vw;
+    @include max-screen($breakpoint-tablet) {
+      position:static;
+    }
+  }
+  .project-info{
+    position:absolute;
+    top:0;
+    left:10.8vw;
+    @include max-screen($breakpoint-tablet) {
+      width:67vw;
+      position:relative;
+      margin:0 0 0 16.6vw;
+      left:0;
+    }
+    .project-info-txt{
+      margin: 0 0 35px;
+      h1{
+        font-size:2.6rem;
+        letter-spacing: 4px;
+        margin:0 0 25px;
+        @include max-screen($breakpoint-tablet) {
+          font-size:1.6rem;
+          margin:0 0 15px;
+        }
+      }
+      p{
+        letter-spacing: 2px;
+        line-height:1.2;
+        @include max-screen($breakpoint-tablet) {
+          font-size:0.8rem;
+        }
+      }
+    }
+  }
+ #number-current{ opacity: 0; }
+ #project-title{ opacity: 0; }
+ #project-position{ opacity: 0; }
+ #project-link{ opacity: 0; }
+
+  .number{
+    position:relative;
+    width:60px;
+    text-align:center;
+    @include max-screen($breakpoint-tablet) {
+      position:static;
+      top:-20vw;
+    }
+    .number-info{
+      margin:0 0 35px;
+      @include max-screen($breakpoint-tablet) {
+        display:flex;
+        position: relative;
+        left:15.5vw;
+        margin:0 0 15px;
+      }
+    }
+    .number-current{
+      font-size:2.5rem;
+      padding: 0 0 10px;
+      @include max-screen($breakpoint-tablet) {
+        font-size:16px;
+        padding: 0 4px;
+      }
+    }
+    .number-line{
+      width:100%;
+      height:1px;
+      background:#fff;
+      @include max-screen($breakpoint-tablet) {
+        width:15px;
+        position:relative;
+        transform: rotate(-45deg);
+        top:7px;
+      }
+    }
+    .number-max{
+      padding:10px 0 0;
+      font-size:1.5rem;
+      color:#bbbbbb;
+      @include max-screen($breakpoint-tablet) {
+        font-size:16px;
+        padding: 0 4px;
+      }
+    }
+    .home-project-arrow{
+      display:flex;
+      justify-content:space-between;
+      @include max-screen($breakpoint-tablet) {
+        position:absolute;
+        bottom:2vh;
+        width:100%;
+      }
+      li{
+        button{
+          cursor:pointer;
+        }
+        i{
+          color:#fff;
+          font-size:1rem;
+          @include max-screen($breakpoint-tablet) {
+            font-size:1.2rem;
+          }
+        }
+        @include max-screen($breakpoint-tablet) {
+          position:relative;
+          left:2vw;
+          &:last-child{
+            left:inherit;
+            right:2vw;
+          }
+        }
+      }
+    }
+
+
+  }
+}
+
+/* ===========================
+  Grid
+=========================== */
+.grid{
+  position:fixed;
+  width:100%;
+  height:100%;
+  z-index:0;
+  display:flex;
+  .grid-line{
+    width:16.66vw;
+    border-right: rgba(255,254,243,0.1) solid 1px;
+  }
+}
+
+/* ===========================
+  Home
+=========================== */
+.video-wrap{
+  position:relative;
+  z-index: -1;
+  width: 100%;
+  overflow: hidden;
+}
+.video-bg{
+  position: fixed;
+  height:100%;
+  width: 100%;
+  z-index: 1;
+  background:url(./images/mozic.png);
+}
+.imgBg{
+  position: fixed;
+  overflow:hidden;
+  z-index: 0;
+  left: 50%;
+  transform: translate(-50%, 0);
+  text-align:center;
+  width: 100%;
+  height: auto; 
+  min-height:100%;
+  min-width: 100%;
+  @include max-screen($breakpoint-tablet) {
+    width: auto;
+    height: 100%;
+  }
+}
+.videoBg{
+  position: absolute;
+  z-index: 0;
+  top:0;
+  left:0;
+  object-fit: cover; 
+  object-position: center top; 
+  height: auto; 
+  min-height: 100%;
+  min-width: 100%;
+}
+
+/* ===========================
+  transition
+=========================== */
+.transition2{
+  position:fixed;
+  display:table;
+  width:100%;
+  height:100%;
+  overflow:hidden;
+  z-index:98;
+  right: -100%;
+  background:$color-yellow;
+}
+
+// .transition{
+//   visibility: hidden;
+//   position:fixed;
+//   display:table;
+//   width:100%;
+//   height:100%;
+//   overflow:hidden;
+//   z-index:99;
+//   &:after{
+//       content:"";
+//       display:block;
+//       position:absolute;
+//       width:100%;
+//       height:100%;
+//       top:0;
+//       // right:-100%;
+//       // right:0;
+//     right: 0;
+//       background:$color-yellow;
+//   }
+//   &.is_transitioning{
+//     visibility:visible;
+//     &:after{
+//       // animation: toLeft 0.8s ease 0s 1 normal both;
+//       animation: toLeftWidth 0.8s ease 0s 1 normal both;
+//     }
+//   }
+// }
+
+
+@keyframes toLeftWidth{
+ 0%{
+    transform:scaleX(0);
+    right: -100%;
+ }
+ 100%{
+    transform:scaleX(1);
+    right: 0;
+ }
+}
+.loading{
+  visibility: hidden;
+  position:fixed;
+  display:table;
+  width:100%;
+  height:100%;
+  text-align:center;
+  overflow:hidden;
+  z-index:99;
+  .loadingImg{
+    @include max-screen($breakpoint-tablet) {
+      width:50%;
+      height:auto;
+    }
+  }
+  .loading__wrap{
+    position:relative;
+    display:table-cell;
+    vertical-align:middle;
+    overflow:hidden;
+    img{
+      position:absolute;
+      left:50%;
+      top:50%;
+      margin:-180px 0 0 -320px;
+    }
+  }
+}
+#loading-svg{
+  width:300px;
+}
+.logosvg-base{
+  fill:#282826;
+}
+.st0{fill:#FFFEFE;}
+.st1{fill:none;
+  stroke:#fff;
+  stroke-width:7;
+  stroke-miterlimit:10;
+}
+
+
+
