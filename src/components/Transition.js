@@ -36,7 +36,9 @@ class Transition extends Component {
                 // delay:0.3,
                 onComplete:function(){
                     self.props.transitionOff();
+                    self.props.transitionBeginAnimateEndOn();
                 }
+                
             });
         }else{
             if(!this.props.isLoadingAnimate){
@@ -46,6 +48,7 @@ class Transition extends Component {
                     right: '100%',
                     onComplete:function(){
                         self.props.transitionOff();
+                        self.props.transitionBeginAnimateEndOff();
                     }
                 });
             }

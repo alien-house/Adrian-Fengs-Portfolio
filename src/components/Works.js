@@ -32,6 +32,7 @@ class Works extends Component {
     let worksURL = siteConfig.baseURL + siteConfig.restAPIURL + 'projects?_embed';
     Promise.all([this.getData(worksURL)]).then(function(){
       // console.log("FInished!!");
+      // alert("FInished");
       self.props.loadingOff();
     });
   }

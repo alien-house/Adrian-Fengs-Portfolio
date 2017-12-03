@@ -18,7 +18,7 @@ class App extends Component {
     this.state = {
       loading: false,
       loadingAnimate: false,
-      transitionEnd: false,
+      transitionBeginAnimateEnd: false,
       transition: false,
       videURL:null,
       imgURL:null,
@@ -37,6 +37,8 @@ class App extends Component {
     this.changeHomeState = this.changeHomeState.bind(this);
     this.transitionOn = this.transitionOn.bind(this);
     this.transitionOff = this.transitionOff.bind(this);
+    this.transitionBeginAnimateEndOn = this.transitionBeginAnimateEndOn.bind(this);
+    this.transitionBeginAnimateEndOff = this.transitionBeginAnimateEndOff.bind(this);
     this.loadingOn = this.loadingOn.bind(this);
     this.loadingOff = this.loadingOff.bind(this);
   }
@@ -60,6 +62,8 @@ class App extends Component {
   transitionOff(){
     this.setState({ transition: false });
   }
+  transitionBeginAnimateEndOn(){ this.setState({ transitionBeginAnimateEnd: true }); }
+  transitionBeginAnimateEndOff(){ this.setState({ transitionBeginAnimateEnd: false }); }
   loadingOn(){
     this.setState({ loading: true });
   }
@@ -122,9 +126,13 @@ class App extends Component {
           isLoading={this.state.loading} 
           isLoadingAnimate={this.state.loadingAnimate} 
           isTransition={this.state.transition}
-          transitionOff={this.transitionOff}  />
+          transitionOff={this.transitionOff}
+          transitionBeginAnimateEndOff={this.transitionBeginAnimateEndOff}
+          transitionBeginAnimateEndOn={this.transitionBeginAnimateEndOn}  />
         <Loading 
           isActive={this.state.loading} 
+          isTransitionBeginAnimateEnd={this.state.transitionBeginAnimateEnd}
+          // isTransition={this.state.transition} 
           endLoadingAnimate={this.endLoadingAnimate} 
           startLoadingAnimate={this.startLoadingAnimate} />
         

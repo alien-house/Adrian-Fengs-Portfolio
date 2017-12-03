@@ -7,21 +7,23 @@ const $ = jQuery;
 
 class Loading extends Component {
   shouldComponentUpdate(nextProps, nextState) {
-    return !(this.props.isActive === nextProps.isActive);
+    return !(this.props.isActive === nextProps.isActive)||
+    !(this.props.isTransitionBeginAnimateEnd === nextProps.isTransitionBeginAnimateEnd);
   }
   componentDidUpdate() {
 	const self = this;
     const loadingDOM = $(findDOMNode(this.refs.loading));
 	if(this.props.isActive){
-		// this.props.trasitionEvent();
 		this.props.startLoadingAnimate();
-		// this.props.trasitionEvent(this.startTweenLite);
-		TweenLite.to(loadingDOM, 0.5,{
-			autoAlpha: 1,
-			// delay:0.3,
-			onComplete:function(){
-			}
-		})
+		if(this.props.isTransitionBeginAnimateEnd){
+                    // alert("TUR!");
+			TweenLite.to(loadingDOM, 0.5,{
+				autoAlpha: 1,
+				// delay:0.3,
+				onComplete:function(){
+				}
+			})
+		}
 	}else{
         // TweenLite.killTweensOf(loadingDOM);
 		TweenLite.to(loadingDOM, 0.8,{
@@ -32,6 +34,11 @@ class Loading extends Component {
 		})
 	}
   }
+
+  appearLoading(){
+
+  }
+
 
   render() {
     return (
