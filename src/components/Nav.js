@@ -94,6 +94,7 @@ class Nav extends Component {
                     <li><a href="http://insta.com" target="_blank" rel="noopener noreferrer"><FontAwesome name='facebook' /></a></li>
                   </ul>
                 </aside>
+                <small className="copyright">Copyright © 2017 Adrian Feng</small>
               </div>
             </div>
           </nav>

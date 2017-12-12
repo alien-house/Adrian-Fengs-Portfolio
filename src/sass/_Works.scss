@@ -95,11 +95,22 @@
 			width:30vw;
 			width:100%;
 		}
+		a{
+			&:hover{
+				img{
+      				transform:scale(1.05);
+				}
+			}
+		}
 	}
 	.unit-img{
+		overflow: hidden;
 		img{
 			width:100%;
 			height:auto;
+		    transform-origin: center;
+		    transition: all .6s;
+		    vertical-align:middle;
 		// box-shadow: 0 0 6px 4px rgba(0,0,0,0.1);
 		}
 	}
@@ -151,8 +162,22 @@
 }
 
 
-
-
+.text-box{
+	line-height: 1.4;
+	font-family: $font-family-poppins;
+	margin:0 0 40px;
+}
+blockquote{
+	position:relative;
+	padding:0 0 0 14px;
+	&:before{
+		position:absolute;
+		content:'"';
+		left:0;
+		top:0;
+		font-size:28px;
+	}
+}
 
 
 
