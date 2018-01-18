@@ -75,6 +75,18 @@ table {
     .btn-normal a:hover:after {
       animation: toRight 0.6s ease 0s 1 normal both; }
 
+.right {
+  text-align: right; }
+
+.btn-normal--right {
+  margin-left: auto; }
+  .btn-normal--right a {
+    font-size: 0.8rem;
+    padding: 6px; }
+  @media screen and (max-width: 768px) {
+    .btn-normal--right {
+      width: 100%; } }
+
 .animationToRight:after {
   animation: toRight 0.6s ease 0s 1 normal both; }
 
@@ -90,43 +102,39 @@ table {
   100% {
     right: 100%; } }
 
-.contents {
-  width: 66vw;
-  margin: 0 auto;
-  padding: 180px 0 50px;
-  letter-spacing: 2px; }
+.btnBack {
+  width: 25%;
+  margin: 20px auto;
+  letter-spacing: 4px;
+  padding: 0 1.2em 0;
+  cursor: pointer;
+  position: relative;
+  transition: all .3s;
+  font-size: 1.3rem;
+  display: inline-block;
+  color: #fff;
+  font-family: "Rozha One", Abel, Arial, "Helvetica Neue", Helvetica, sans-serif; }
   @media screen and (max-width: 768px) {
-    .contents {
-      padding: 140px 0 20px;
-      width: 64.6vw; } }
-  .contents h2 {
-    font-size: 2.6rem;
-    letter-spacing: 3px;
-    margin: 0 0 0.7em; }
-    @media screen and (max-width: 768px) {
-      .contents h2 {
-        font-size: 2.0rem; } }
-  .contents h3 {
-    font-size: 1.3rem;
-    letter-spacing: 2px;
-    margin: 0 0 1.0em; }
-    @media screen and (max-width: 768px) {
-      .contents h3 {
-        margin: 0 0 0.5em; } }
-
-.sec {
-  margin: 0 0 5em; }
-
-.page-title {
-  text-align: center;
-  font-size: 2.4rem;
-  letter-spacing: 20px;
-  margin: 0 -20px 2em 0;
-  text-transform: uppercase; }
-  @media screen and (max-width: 768px) {
-    .page-title {
-      font-size: 2.2rem;
-      margin-bottom: 1em; } }
+    .btnBack {
+      width: 100%; } }
+  .btnBack:after {
+    display: block;
+    position: absolute;
+    content: "";
+    width: 0;
+    right: 0;
+    height: 2px;
+    bottom: -3px;
+    background: #fff;
+    transition: all .3s; }
+  .btnBack:hover, .btnBack.active {
+    color: #eac30d; }
+    .btnBack:hover:after, .btnBack.active:after {
+      left: 0;
+      right: auto;
+      background: #eac30d;
+      transform-origin: right;
+      width: 100%; }
 
 .about-name {
   font-size: 4.8rem;
@@ -283,7 +291,7 @@ h2.contact-title {
   display: flex;
   justify-content: space-between; }
   .paragraph-col2 .col-item {
-    width: 50%; }
+    width: 49%; }
   @media screen and (max-width: 768px) {
     .paragraph-col2 {
       flex-direction: column; }
@@ -429,6 +437,9 @@ h2.contact-title {
   font-family: "Poppins", Abel, Arial, "Helvetica Neue", Helvetica, sans-serif;
   margin: 0 0 40px; }
 
+p {
+  position: relative; }
+
 blockquote {
   position: relative;
   padding: 0 0 0 14px; }
@@ -469,6 +480,7 @@ strong {
   text-align: center;
   width: 100%; }
   .home-header h1 {
+    position: relative;
     padding: 75px 0 5px; }
     @media screen and (max-width: 768px) {
       .home-header h1 {
@@ -547,8 +559,8 @@ strong {
   .navigation .menu li {
     font-size: 4rem;
     font-family: "Rozha One", Abel, Arial, "Helvetica Neue", Helvetica, sans-serif;
-    margin: 0 0 2vh;
-    letter-spacing: 5px; }
+    margin: 0 0 2vh 10px;
+    letter-spacing: 15px; }
     @media screen and (max-width: 768px) {
       .navigation .menu li {
         font-size: 2.5rem; } }
@@ -600,6 +612,9 @@ strong {
         font-size: 1.8rem; }
       .navigation .home-profile .social li a:hover span {
         color: #eac30d; }
+
+.copyright {
+  font-size: 0.8rem; }
 
 .normalpage {
   position: absolute;
@@ -758,33 +773,40 @@ strong {
   position: relative;
   z-index: -1;
   width: 100%;
-  overflow: hidden; }
+  overflow: hidden;
+  position: fixed; }
 
 .video-bg {
   position: fixed;
   height: 100%;
   width: 100%;
-  z-index: 1;
+  z-index: 2;
   background: url(./images/mozic.png); }
+
+.video-box {
+  position: fixed;
+  z-index: 1; }
 
 .imgBg {
   position: fixed;
   overflow: hidden;
   z-index: 0;
   left: 50%;
+  top: 0;
   transform: translate(-50%, 0);
   text-align: center;
   width: 100%;
   height: auto;
   min-height: 100%;
-  min-width: 100%; }
+  min-width: 100%;
+  -webkit-overflow-scrolling: touch; }
   @media screen and (max-width: 768px) {
     .imgBg {
       width: auto;
       height: 100%; } }
 
 .videoBg {
-  position: absolute;
+  position: fixed;
   z-index: 0;
   top: 0;
   left: 0;
@@ -817,6 +839,7 @@ strong {
 
 .loading {
   visibility: hidden;
+  pointer-events: none;
   position: fixed;
   display: table;
   width: 100%;
@@ -824,20 +847,15 @@ strong {
   text-align: center;
   overflow: hidden;
   z-index: 99; }
-  @media screen and (max-width: 768px) {
-    .loading .loadingImg {
-      width: 50%;
-      height: auto; } }
   .loading .loading__wrap {
     position: relative;
     display: table-cell;
     vertical-align: middle;
     overflow: hidden; }
-    .loading .loading__wrap img {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      margin: -180px 0 0 -320px; }
+    @media screen and (max-width: 768px) {
+      .loading .loading__wrap .loadingImg {
+        width: 100%;
+        height: auto; } }
 
 #loading-svg {
   width: 300px; }
@@ -853,3 +871,66 @@ strong {
   stroke: #fff;
   stroke-width: 7;
   stroke-miterlimit: 10; }
+
+/* ===========================
+  Contents
+=========================== */
+.contents {
+  width: 66vw;
+  margin: 0 auto;
+  padding: 180px 0 50px;
+  letter-spacing: 2px; }
+  @media screen and (max-width: 768px) {
+    .contents {
+      padding: 140px 0 20px;
+      width: 64.6vw; } }
+  .contents h2 {
+    font-size: 2.6rem;
+    letter-spacing: 3px;
+    margin: 0 0 0.7em; }
+    @media screen and (max-width: 768px) {
+      .contents h2 {
+        font-size: 2.0rem; } }
+  .contents h3 {
+    font-size: 1.3rem;
+    letter-spacing: 2px;
+    margin: 0 0 1.0em; }
+    @media screen and (max-width: 768px) {
+      .contents h3 {
+        margin: 0 0 0.5em; } }
+
+.right {
+  text-align: right; }
+
+.text-area p {
+  line-height: 1.6; }
+
+.text-area a {
+  text-decoration: underline; }
+  .text-area a:hover {
+    text-decoration: none; }
+
+.sec {
+  margin: 0 0 5em; }
+
+.center {
+  text-align: center; }
+
+.page-title {
+  text-align: center;
+  font-size: 2.4rem;
+  letter-spacing: 20px;
+  margin: 0 -20px 2em 0;
+  text-transform: uppercase; }
+  @media screen and (max-width: 768px) {
+    .page-title {
+      font-size: 2.2rem;
+      margin-bottom: 1em; } }
+
+/* ===========================
+  404
+=========================== */
+.etc .text-area {
+  text-align: center; }
+  .etc .text-area p {
+    font-family: "Poppins", Abel, Arial, "Helvetica Neue", Helvetica, sans-serif; }

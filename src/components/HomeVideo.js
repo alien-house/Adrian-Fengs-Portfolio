@@ -40,9 +40,11 @@ class Content extends Component {
     this.handleVideoErrored = this.handleVideoErrored.bind(this);
     this.handleVideoEmptied = this.handleVideoEmptied.bind(this);
     this.myVideo = '';
+    this.myImage = '';
     // this.startTrasition = this.startTrasition.bind(this);
   }
   componentDidMount() {
+    this.myImage = $(findDOMNode(this.refs.img));
   }
   shouldComponentUpdate(nextProps, nextState) {
     return !(this.props.data.videoURL === nextProps.data.videoURL)||
@@ -58,6 +60,13 @@ class Content extends Component {
         this.myVideo.on("error", this.handleVideoErrored);
       }
     }
+    if(this.props.data.imgURL !== prevProps.data.imgURL){
+      if(this.props.data.imgURL){
+        this.myImage.css({visibility: 'hidden'});
+        this.props.data.loadingOff();
+      }
+    }
+
   }
 
   componentWillUpdate(nextProps, nextState) {
@@ -69,6 +78,10 @@ class Content extends Component {
         this.myVideo.off("error", this.handleVideoErrored);
       }
     }
+    // if(this.props.data.imgURL !== nextProps.data.imgURL){
+
+    //   this.myImage.css({visibility: 'hidden'});
+    // }
   }
 
   handleVideoEmptied(){
@@ -83,8 +96,15 @@ class Content extends Component {
   }
  
   videoPlay(){
-    this.myVideo.css({visibility: 'visible'});
-    this.myVideo[0].play();
+    const props = this.props.data;
+    if(props.videoURL){
+      // console.log(props.videoURL);
+      this.myVideo.css({visibility: 'visible'});
+      this.myVideo[0].play();
+    }else{
+      this.myImage.css({visibility: 'visible'});
+      // console.log(props.imgURL);
+    }
   }
 
   handleVideoErrored() {

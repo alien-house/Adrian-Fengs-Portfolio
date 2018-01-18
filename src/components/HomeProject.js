@@ -175,9 +175,10 @@ class HomeProject extends Component {
     const pt = $(findDOMNode(this.refs.projectTitle));
     const pp = $(findDOMNode(this.refs.projectPosition));
     const pl = $(findDOMNode(this.refs.projectLink));
-    if(SiteInfo.getWinWidth() >= SiteInfo.spWidth){
-      this.props.playVideo();
-    }
+    // if(SiteInfo.getWinWidth() >= SiteInfo.spWidth){
+    //   this.props.playVideo();
+    // }
+    this.props.playVideo();
     this.appearAnimation = new TimelineLite();
     this.appearAnimation.play();
     this.appearAnimation.fromTo(nc, 0.8, { 

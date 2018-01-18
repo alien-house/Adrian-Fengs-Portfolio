@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import DocumentTitle from 'react-document-title';
+import { Link } from 'react-router-dom'
+import FontAwesome from 'react-fontawesome';
 
 class WorksDetail extends Component {
 	constructor(props) {
@@ -8,6 +10,7 @@ class WorksDetail extends Component {
       currentNum: null,
       postData:{}
     };
+    this.goBack = this.goBack.bind(this);
 	}
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -56,38 +59,61 @@ class WorksDetail extends Component {
     }
     return params;
   }
+
+  goBack(){
+      this.props.history.goBack();
+  }
  
 	render() {
-      if(this.state.postData !== null){
-        var videoParam = this.getUrlParameter(this.state.postData.videourl).v;
+    let postData = this.state.postData;
+      if(postData !== null && postData !== undefined){
+        var videoParam = this.getUrlParameter(postData.videourl).v;
+      }else if(postData === undefined){
+        console.log(postData);
       }
 
     const VideoDetail = () => {
-      if(this.state.postData != null)
+      if(postData != null)
         return(
-            <iframe
-            title={this.state.postData.title}
-            src={`https://www.youtube.com/embed/${videoParam}`}
-            frameBorder="0" allowFullScreen>
-            </iframe>
+          <DocumentTitle title={postData.title || 'Untitled'}>
+            <article className="projectDetail-box">
+              <div className="projectDetail-video">
+                <iframe
+                title={postData.title}
+                src={`https://www.youtube.com/embed/${videoParam}`}
+                frameBorder="0" allowFullScreen>
+                </iframe>
+              </div>
+              <h1 className="projectDetail-title">{postData.title}</h1>
+              <div className="projectDetail-contents" dangerouslySetInnerHTML={{__html: postData.content}} />
+              <div className="center">
+                <button className="btnBack" onClick={this.goBack}><FontAwesome name='long-arrow-left' /> Back</button>
+              </div>
+            </article>
+          </DocumentTitle>
         );
-      else return null;
+      else {
+        return <NoMatch />
+      }
     }
     
     return (
-      <DocumentTitle title={this.state.postData.title || 'Untitled'}>
-        <article className="projectDetail-box">
-          <div className="projectDetail-video">
-            <VideoDetail />
-          </div>
-          <h1 className="projectDetail-title">{this.state.postData.title}</h1>
-          <div className="projectDetail-contents" dangerouslySetInnerHTML={{__html: this.state.postData.content}} />
-            
-        </article>
-      </DocumentTitle>
+        <VideoDetail />
     );
   }
 }
 
 export default WorksDetail;
 
+
+const NoMatch = ({ winTitle }) => {
+  return(
+    <div className="etc">
+      <div className="text-area">
+        <p>We couldn’t find this project.</p>
+        <p>Maybe it’s out there, somewhere.<br />
+        You can always find other works on <Link to={`/works/`}>my project page</Link>.</p>
+      </div>
+    </div>
+  )
+}

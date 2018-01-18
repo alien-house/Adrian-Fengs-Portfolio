@@ -1,43 +1,4 @@
-.contents{
-	width: 66vw;
-	margin: 0 auto;
-	padding: 180px 0 50px; 
-	letter-spacing: 2px;
-	@include max-screen($breakpoint-tablet) {
-		padding: 140px 0 20px; 
-		width: 64.6vw;
-	}
-	h2{
-		font-size: 2.6rem;
-		letter-spacing: 3px;
-		margin: 0 0 0.7em;
-		@include max-screen($breakpoint-tablet) {
-			font-size: 2.0rem;
-		}
-	}
-	h3{
-		font-size: 1.3rem;
-		letter-spacing: 2px;
-		margin: 0 0 1.0em;
-		@include max-screen($breakpoint-tablet) {
-			margin: 0 0 0.5em;
-		}
-	}
-}
-.sec{
-	margin:0 0 5em;
-}
-.page-title{
-	text-align: center;
-	font-size: 2.4rem;
-	letter-spacing: 20px;
-  	margin:0 -20px 2em 0; 
-	text-transform: uppercase;
-	@include max-screen($breakpoint-tablet) {
-		font-size: 2.2rem;
-		margin-bottom:1em;
-	}
-}
+
 .about-name{
 	font-size: 4.8rem;
 	margin:0 0 0.3em;
@@ -218,7 +179,7 @@ h2.contact-title{
 	display:flex;
 	justify-content:space-between;
 	.col-item{
-		width:50%;
+		width:49%;
 	}
 	@include max-screen($breakpoint-tablet) {
 		flex-direction: column;

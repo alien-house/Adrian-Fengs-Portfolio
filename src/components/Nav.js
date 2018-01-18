@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import jQuery from 'jquery';
 import { TweenLite } from "gsap";
 import FontAwesome from 'react-fontawesome';
+import { userData } from '../utils/config';
 const $ = jQuery;
 
 class Nav extends Component {
@@ -66,7 +67,8 @@ class Nav extends Component {
 
   
 	render() {
-
+    let d = new Date();
+    let copyYear = "2017 - " + d.getFullYear();
     return (
      <nav id="nav" className="nav">
            <button id="nav__button" className="nav__burger">
@@ -88,13 +90,12 @@ class Nav extends Component {
   VANCOUVER, CANADA</p>
                   <p className="home-profile__email"><a href="mailto:zak.logos@gmail.com">zak.logos@gmail.com</a></p>
                   <ul className="social">
-                    <li><a href="http://insta.com" target="_blank" rel="noopener noreferrer"><FontAwesome name='youtube-play' /></a></li>
-                    <li><a href="http://insta.com" target="_blank" rel="noopener noreferrer"><FontAwesome name='vimeo' /></a></li>
-                    <li><a href="http://insta.com" target="_blank" rel="noopener noreferrer"><FontAwesome name='instagram' /></a></li>
-                    <li><a href="http://insta.com" target="_blank" rel="noopener noreferrer"><FontAwesome name='facebook' /></a></li>
+                    <li><a href={userData['youtubeURL']} target="_blank" rel="noopener noreferrer"><FontAwesome name='youtube-play' /></a></li>
+                    <li><a href={userData['instagramURL']} target="_blank" rel="noopener noreferrer"><FontAwesome name='instagram' /></a></li>
+                    <li><a href={userData['facebookURL']} target="_blank" rel="noopener noreferrer"><FontAwesome name='facebook' /></a></li>
                   </ul>
                 </aside>
-                <small className="copyright">Copyright © 2017 Adrian Feng</small>
+                <small className="copyright">Copyright © {copyYear} Adrian Feng</small>
               </div>
             </div>
           </nav>

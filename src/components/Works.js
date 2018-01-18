@@ -6,10 +6,11 @@ import bgImg from '../images/works.jpg';
 import WorksDetail from './WorksDetail';
 import { siteConfig } from '../utils/config';
 
+
 const categories = [
   {slug: "music_video", name: "Music Video"},
-  {slug: "commercial_film", name: "Commercial Film"},
-  {slug: "show_film", name: "Show Film"}
+  {slug: "publicity_video", name: "Publicity Videos"},
+  {slug: "short_film", name: "Short Film"}
 ]
 class Works extends Component {
 	constructor(props) {
@@ -29,7 +30,7 @@ class Works extends Component {
     this.props.loadingOn();
     this.props.transitionOn(); // open the nav
     this.props.updateImgURLEvent(bgImg); 
-    let worksURL = siteConfig.baseURL + siteConfig.restAPIURL + 'projects?_embed';
+    let worksURL = siteConfig.baseURL + siteConfig.restAPIURL + 'projects?_embed&per_page=50';
     Promise.all([this.getData(worksURL)]).then(function(){
       // console.log("FInished!!");
       // alert("FInished");
@@ -148,9 +149,9 @@ class Works extends Component {
           <main className="contents">
             <h1 id="page-title" className="page-title">works</h1>
             <ul className="works-category-nav">
-              <li><NavLink activeClassName="active" to={{pathname:`${baseURL}/music_video`}}>Music Video</NavLink></li>
-              <li><NavLink activeClassName="active" to={{pathname:`${baseURL}/commercial_film`}}>Commercial Film</NavLink></li>
-              <li><NavLink activeClassName="active" to={{pathname:`${baseURL}/show_film`}}>Show Film</NavLink></li>
+              <li><NavLink activeClassName="active" to={{pathname:`${baseURL}/music_video`}}>{categories[0]['name']}</NavLink></li>
+              <li><NavLink activeClassName="active" to={{pathname:`${baseURL}/publicity_video`}}>{categories[1]['name']}</NavLink></li>
+              <li><NavLink activeClassName="active" to={{pathname:`${baseURL}/short_film`}}>{categories[2]['name']}</NavLink></li>
             </ul>
 
             <TransitionGroup component="main" className="page-main">
@@ -187,7 +188,12 @@ const CategoryBox = ({winTitle, state, baseURL, match: { params }}) => {
   const projectData = divState.projectData;
 
   const cateTitle = categories.filter(e => e.slug === divParams.topicId)[0];
-  let title = cateTitle.name + ' | ' + winTitle;
+  let title;
+  if(cateTitle){
+    title = cateTitle.name + ' | ' + winTitle;
+  }else{
+    title =  winTitle;
+  }
 
   const ProjectDatas = projectData.filter(function(e){
     return ( e.category_slug === divParams.topicId)

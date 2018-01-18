@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import Loading from './components/Loading';
+import DocumentTitle from 'react-document-title';
 import Nav from './components/Nav';
 import Header from './components/Header';
 import HomeVideo from './components/HomeVideo';
@@ -10,6 +12,7 @@ import Works from './components/Works';
 import Transition from './components/Transition.js';
 import './App.css';
 import { ResponsiveSetting } from './utils/ResponsiveSetting.js';
+import { BrowserRouter } from 'react-g-analytics';
 
 class App extends Component {
 
@@ -119,7 +122,7 @@ class App extends Component {
 
   render() {
     return (
-      <BrowserRouter>
+      <BrowserRouter id="UA-112497350-1">
       <div className="App">
         <Transition 
           ref="Transition" 
@@ -163,7 +166,9 @@ class App extends Component {
             <Route path="/about" component={this.AboutComponents} />
             <Route path="/works" component={this.WorksComponents} />
            
-            <Route component={NoMatch}/>
+            <Route path="*" render={() => 
+              <NoMatch winTitle={this.title} />
+            }/>
           </Switch>
         
         <div className="grid">
@@ -188,8 +193,20 @@ class App extends Component {
 
 export default App;
 
-const NoMatch = ({ location }) => (
-  <div>
-    <h3>No match for <code>{location.pathname}</code></h3>
-  </div>
-)
+const NoMatch = ({ winTitle }) => {
+  return(
+    <DocumentTitle title={winTitle}>
+      <section id="etc" className="etc normalpage">
+        <main className="contents">
+          <h1 id="page-title" className="page-title">not found</h1>
+          <div className="text-area">
+            <p>We couldn’t find this page.</p>
+            <p>Maybe it’s out there, somewhere.<br />
+            You can always find my works on <Link to={`/works/`}>my project page</Link>.</p>
+          </div>
+        </main>
+        
+      </section>
+    </DocumentTitle>
+  )
+}

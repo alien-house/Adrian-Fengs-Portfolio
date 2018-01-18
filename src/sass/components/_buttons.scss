@@ -35,6 +35,21 @@
         }
     }
 }
+
+.right{
+    text-align:right;
+}
+.btn-normal--right{
+    margin-left: auto;
+    a{
+        font-size:0.8rem;
+        padding:6px;
+    }
+    @include max-screen($breakpoint-tablet) {
+        width:100%;
+    }
+}
+
 .animationToRight{
     &:after{
         animation: toRight 0.6s ease 0s 1 normal both;
@@ -58,6 +73,43 @@
 }
 
 
+.btnBack{
+    width:25%;
+    margin: 20px auto;
+    letter-spacing:4px;
+    padding: 0 1.2em 0;
+    cursor: pointer;
+    position: relative;
+    transition: all .3s;
+    font-size: 1.3rem;
+    display: inline-block;
+    color:#fff;
+    font-family:$font-family-rozha;
+    @include max-screen($breakpoint-tablet) {
+        width:100%;
+    }
+    &:after{
+        display: block;
+        position: absolute;
+        content: "";
+        width: 0;
+        right: 0;
+        height: 2px;
+        bottom: -3px;
+        background: #fff;
+        transition: all .3s;
+    }
+    &:hover,&.active{
+        color: $color-yellow;
+        &:after{
+            left: 0;
+            right: auto;
+            background: $color-yellow;
+            transform-origin: right;
+            width: 100%;
+        }
+    }
+}
 
 
 // .btn-capsule{
